@@ -12,15 +12,32 @@ function Header() {
     const {user,isSignedIn} = useUser();
 
   return (  
-    <div className='p-5 flex justify-between items-center border shadow-sm'>
-        <Image 
-            src={'./logo.svg'}
-            alt = "logo"
-            width={160}
-            height={100}
-        ></Image>
+    <div className='bg-black p-5 gap-5 flex justify-between items-center shadow-sm'>
+        <div className='flex items-center gap-4'>
+            <Image 
+                className='rounded-full'
+                src={'/newlogo.svg'}
+                alt = "logo"
+                width={50}
+                height={30}
+            ></Image>
+            <h2 className='font-serif text-gray-300 text-3xl'>Expensify</h2>
+        </div>
+       
+
         {isSignedIn? 
-            <UserButton/> :
+            <div style={{width: "50px", height: "50px"}}>
+                <UserButton appearance={{
+                    elements: {
+                        userButtonAvatarBox: {
+                            width: "100%",
+                            height: "100%"
+                        },
+                    },
+                }} />
+            </div>
+           
+            :
             <Link href='/sign-in'>
                 <Button>Get Started</Button>
             </Link>

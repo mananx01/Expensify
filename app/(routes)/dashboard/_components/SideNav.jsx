@@ -2,11 +2,13 @@
 import React, { useEffect } from 'react'
 import Image from 'next/image'
 import { GroupIcon, LayoutGrid , PiggyBank, ReceiptIndianRupee, ShieldCheck, Wallet } from 'lucide-react'
-import { UserButton } from '@clerk/nextjs'
+import { UserButton, useUser } from '@clerk/nextjs'
 import { usePathname } from 'next/navigation'
 import Link from 'next/link';
 
 function SideNav() {
+
+    const {user} = useUser()
 
     const menuItems = [
 
@@ -27,7 +29,7 @@ function SideNav() {
             id: 3,
             name: "Expenses", 
             icon: ReceiptIndianRupee,
-            path: "/dashboard/expenses"
+            path: `/dashboard/expenses/`
         },
         {
             id: 4, 
@@ -57,18 +59,22 @@ function SideNav() {
     },[])
 
   return (
-    <div className='h-screen p-5 border shadow-sm'>
-        <Image src={'/logo.svg'}
-            alt="logo image"
-            width={150}
-            height={150} 
-        ></Image>
+    <div className='h-screen p-5 border shadow-sm bg-slate-950'>
+        <div className='flex items-center gap-4'>
+            <Image src={'/newlogo.svg'}
+                alt="logo image"
+                width={50}
+                height={30} 
+            ></Image>
+            <h2 className='text-gray-300 text-2xl'>Expensify</h2>
+        </div>
+        
         <div className='mt-8'>
             {menuItems.map((menu,index) => (    
 
                 <Link href={menu.path}>
 
-                    <h2 className={`flex gap-2 items-center mb-2 text-gray-700 font-medium p-3 cursor-pointer rounded-md
+                    <h2 className={`flex gap-2 items-center mb-2 text-gray-300 font-medium p-3 cursor-pointer rounded-md
                     hover:text-primary hover:bg-blue-300 
                     ${path==menu.path&& 'bg-blue-950 text-slate-100'}
                     `}>
@@ -83,7 +89,7 @@ function SideNav() {
         </div>
         <div className='fixed bottom-10 p-5 flex gap-2 items-center'>
             <UserButton/>
-            Profile
+            <h2 className='text-white'>{`${user?.fullName}`}</h2>
         </div>
     </div>
   )

@@ -4,6 +4,8 @@
 
 body {
   font-family: Arial, Helvetica, sans-serif;
+  /* background: linear-gradient(135deg, #f0f4f8, #d9e2ec); */
+  /* background: linear-gradient(to bottom right, #f3f4f6, #e5e7eb); */
 }
 
 @layer base {
@@ -69,4 +71,40 @@ body {
   body {
     @apply bg-background text-foreground;
   }
+}
+
+@keyframes slideLeftToRight {
+  0% {
+    transform: translateX(-100%); /* Start off-screen to the left */
+  }
+  50% {
+    transform: translateX(0); /* Move to its normal position */
+  }
+  100% {
+    transform: translateX(100%); /* Move off-screen to the right */
+  }
+}
+
+@keyframes slideRightToLeft {
+  0% {
+    transform: translateX(100%); /* Start off-screen to the right */
+  }
+  50% {
+    transform: translateX(0); /* Move to its normal position */
+  }
+  100% {
+    transform: translateX(-100%); /* Move off-screen to the left */
+  }
+}
+
+.slide-text-container {
+  width: 100%; /* Ensures it takes up the full width of the container */
+  overflow: hidden; /* Hides the overflowing text */
+  position: relative;
+}
+
+.slide-text {
+  display: inline-block;
+  white-space: nowrap; /* Prevents wrapping of the text */
+  animation: slideRightToLeft 10s linear infinite, slideLeftToRight 10s linear infinite ;
 }

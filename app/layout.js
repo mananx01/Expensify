@@ -2,6 +2,7 @@ import {Inter, Outfit} from "next/font/google";
 import "./globals.css";
 import { ClerkProvider } from "@clerk/nextjs";
 import { Toaster } from "@/components/ui/sonner";
+import { ThemeProvider } from "@/components/theme-provider";
 
 const outfit = Outfit({subsets: ["latin"]})
 
@@ -13,12 +14,12 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <ClerkProvider>
-      <html lang="en">
-        <body className={outfit.className}>
-          <Toaster/>
-          {children}
-        </body>
-      </html>
+        <html lang="en">
+          <body className={outfit.className}>
+            <Toaster richColors />
+            {children}
+          </body>
+        </html>
     </ClerkProvider>
   );
 }

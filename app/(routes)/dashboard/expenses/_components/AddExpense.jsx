@@ -5,26 +5,36 @@ import { budgets, expenses } from '@/utils/schema';
 import React, { useState } from 'react'
 import { toast } from 'sonner';
 
+
 // auto refresh this page after adding new expense 
 
-function AddExpense({budget}) {
+function AddExpense({budget,refreshData}) {
 
     const [name,setName] = useState();
     const [amount,setAmount] = useState();
 
     const addNewExpense = async () => {
-        const result = await db.insert(expenses).values({
-            name: name,
-            amount: amount,
-            budgetId: budget.id,
-        }).
-        returning({insertedId: budgets.id})
-        
-        console.log(result)
+        if(amount <= budget.amount-budget.totalSpend) {
+            const result = await db.insert(expenses).values({
+                name: name,
+                amount: amount,
+                budgetId: budget.id,
+            }).
+            returning({insertedId: budgets.id})
 
-        if(result) {
-            toast("Expense Added Successfully")
+            console.log(result)
+            refreshData();
+            setName("")
+            setAmount(0)
+
+            if(result) {
+                toast.success("Expense Added Successfully")
+            }
         }
+        else{
+            toast.error('Overflowing Budget')
+        }
+       
     
     }
 

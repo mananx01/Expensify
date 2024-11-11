@@ -3,11 +3,16 @@ import React from 'react'
 
 function DashboardHeader() {
   return (
-    <div className='p-5 shadow-sm border-b flex justify-between'>    
-        
+    <div className='bg-gradient-to-br from-slate-100 to-gray-300 p-5 border-b shadow-sm flex justify-between items-center'>    
+      
+      <div className="slide-text-container w-full text-primary font-medium">
+        <span className="slide-text">
+          Simplify your Expenses with Expensify !!
+        </span>
+      </div>
 
 
-      <div className="relative">
+      {/* <div className="relative">
         <label htmlFor="Search" className="sr-only"> Search </label>
 
         <input
@@ -37,15 +42,19 @@ function DashboardHeader() {
             </svg>
           </button>
         </span>
-      </div>
+      </div> */}
 
 
-
-
-
-      <div>
-          <UserButton/>
-      </div>
+        <div className="rounded-full" style={{width: "40px", height: "40px"}}>
+            <UserButton appearance={{
+                elements: {
+                    userButtonAvatarBox: {
+                        width: "100%",
+                        height: "100%"
+                    },
+                },
+            }} />
+        </div>
     </div>
   )
 }
