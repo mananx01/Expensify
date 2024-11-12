@@ -3,6 +3,7 @@
 import React from 'react'
 import Image from 'next/image'
 import { useUser, UserButton } from '@clerk/nextjs';
+import { ArrowBigRight, ArrowBigRightDash, ArrowBigRightIcon, LucideArrowBigRight, LucideArrowDownRight, LucideArrowRight, LucideArrowRightCircle, LucideArrowRightToLine, LucideSquareArrowDownRight } from 'lucide-react';
 
 function Hero() {
 
@@ -27,7 +28,7 @@ function Hero() {
                 className="block w-full rounded bg-red-900 px-12 py-3 text-sm font-medium text-gray-300 shadow hover:bg-red-700 focus:outline-none focus:ring active:bg-red-500 sm:w-auto"
                 href={isSignedIn? "/dashboard": "/sign-in"}
                 >
-                Get Started
+                Get Started 
                 </a>
             </div>
             </div>
