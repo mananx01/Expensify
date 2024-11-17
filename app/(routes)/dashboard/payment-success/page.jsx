@@ -3,18 +3,20 @@ import { CheckCircle } from 'lucide-react'
 import React, { useEffect, useState } from 'react'
 import { useSearchParams } from 'next/navigation'
 
-function Page() {
+function PaymentSuccessPage() {
+
   const [searchParams, setSearchParams] = useState(null)
   const searchParamsFromUrl = useSearchParams()
 
   useEffect(() => {
     if (searchParamsFromUrl) {
-      setSearchParams({
-        amount: searchParamsFromUrl.get('amount'),
-        payment_intent: searchParamsFromUrl.get('payment_intent'),
-        payment_intent_client_secret: searchParamsFromUrl.get('payment_intent_client_secret'),
-        redirect_status: searchParamsFromUrl.get('redirect_status'),
-      })
+      const params = {
+        amount: searchParamsFromUrl?.get('amount'),
+        payment_intent: searchParamsFromUrl?.get('payment_intent'),
+        payment_intent_client_secret: searchParamsFromUrl?.get('payment_intent_client_secret'),
+        redirect_status: searchParamsFromUrl?.get('redirect_status'),
+      };
+      setSearchParams(params);
     }
   }, [searchParamsFromUrl])
 
@@ -35,4 +37,11 @@ function Page() {
   )
 }
 
-export default Page
+
+export default function Page() {
+  return (
+    <React.Suspense fallback={<div>Loading...</div>}>
+      <PaymentSuccessPage />
+    </React.Suspense>
+  );
+}
