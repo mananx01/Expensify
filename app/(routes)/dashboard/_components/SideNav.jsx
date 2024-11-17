@@ -37,16 +37,16 @@ function SideNav() {
             icon: ShieldCheck ,
             path: "/dashboard/upgrade"
         },
-        {   
-            // To be implemented
-            id: 5,
-            name: "Groups",
-            icon: GroupIcon,
-            path: "/dashboard/groups"
-        },{
-            // To be implemented
+        // {   
+        //     // To be implemented
+        //     id: 5,
+        //     name: "Groups",
+        //     icon: GroupIcon,
+        //     path: "/dashboard/groups"
+        // }
+        ,{
             id: 6,
-            name: "Wallet",
+            name: "Payments",
             icon: Wallet,
             path: "/dashboard/wallet"
         }

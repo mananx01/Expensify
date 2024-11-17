@@ -13,21 +13,22 @@ function page() {
 
     const getAllExpenses = async ()=> { 
 
-        const res = await db.select({
-          id: expenses.id,
-          name: expenses.name,
-          amount: expenses.amount,
-          createdAt: expenses.createdAt
-        }).from(budgets)
-        .rightJoin(expenses, eq(budgets.id, expenses.budgetId))
-        .where(eq(budgets.createdBy, user?.primaryEmailAddress.emailAddress))
-        .orderBy(desc(budgets.id));
-    
-        if(res) {
-            setExpenseList(res)
-        }
-        console.log("expenses: ", res);
-    
+      const res = await db.select({
+        id: expenses.id,
+        name: expenses.name,
+        amount: expenses.amount,
+        createdAt: expenses.createdAt,
+        paid: expenses.paid
+      }).from(budgets)
+      .rightJoin(expenses, eq(budgets.id, expenses.budgetId))
+      .where(eq(budgets.createdBy, user?.primaryEmailAddress.emailAddress))
+      .orderBy(desc(budgets.id));
+  
+      if(res) {
+          setExpenseList(res)
+      }
+      console.log("expenses: ", res);
+  
     }
 
     useEffect(() => {

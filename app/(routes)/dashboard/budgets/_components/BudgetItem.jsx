@@ -21,13 +21,13 @@ function BudgetItem({budget}) {
                         <h2 className='text-sm text-slate-800'>{budget.totalItems} items</h2>
                     </div>
                 </div>
-                <h2 className='font-bold text-primary text-lg'>₹{budget.amount}</h2>
+                <h2 className='font-bold text-primary text-lg'>${budget.amount}</h2>
             </div>  
 
             <div className='mt-6'>  
                 <div className='flex justify-between'>
-                    <h2 className='text-sm text-red-800'>₹{budget.totalSpend?budget.totalSpend:0} Spent</h2>
-                    <h2 className='text-sm text-green-900'>₹{budget.totalSpend? budget.amount-budget.totalSpend: budget.amount} Remaining</h2>
+                    <h2 className='text-sm text-red-800'>${budget.totalSpend?budget.totalSpend:0} Spent</h2>
+                    <h2 className='text-sm text-green-900'>${budget.totalSpend? budget.amount-budget.totalSpend: budget.amount} Remaining</h2>
                 </div>
                 {/* progress bar */}
                 {/* <div className='mt-2 w-full bg-slate-300 h-2 rounded-md'>

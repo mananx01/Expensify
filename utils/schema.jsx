@@ -20,6 +20,7 @@ export const expenses = pgTable('expenses', (table) => {
       name: table.varchar('name').notNull(),
       amount: table.numeric('amount').notNull().default(0),
       budgetId: table.integer('budgetId').references(()=> budgets.id),
-      createdAt: table.timestamp('createdAt').defaultNow()
+      createdAt: table.timestamp('createdAt').defaultNow(),
+      paid: table.boolean('paid').default(false)
    }
 })
