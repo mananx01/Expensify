@@ -9,10 +9,18 @@ import GetTransactions from './GetTransactions';
 function PaymentPage() {
 
   return (
-    <div className='p-10'>
-        Payments
-        <GetTransactions/>
+
+    <div class="bg-white shadow-lg rounded-lg p-6 w-full mx-auto">
+      <div class="flex justify-between items-center border-b pb-4 mb-4">
+        <h2 class="text-lg font-semibold text-gray-800">Recent Transactions</h2>
+        <a href="#" class="text-blue-500 text-sm hover:underline">View All</a>
+      </div>
+
+      <GetTransactions/>
+      
     </div>
+
+
   )
 }
 

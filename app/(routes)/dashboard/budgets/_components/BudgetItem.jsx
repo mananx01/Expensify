@@ -12,10 +12,10 @@ function BudgetItem({budget}) {
   return (
     <Link href={"/dashboard/expenses/" + budget.id}> 
 
-        <div className='p-4 bg-slate-200 rounded-lg shadow-sm border-2 hover:cursor-pointer hover:shadow-md h-[150px]'>
+        <div className='p-4 bg-gradient-to-tl from-slate-100 via-slate-300 to-slate-400 rounded-lg shadow-sm border-black hover:cursor-pointer hover:shadow-md h-[150px]'>
             <div className='flex gap-2 items-center justify-between'>
                 <div className='flex gap-2 items-center'>
-                    <h2 className='text-2xl bg-slate-300 rounded-full p-2'>{budget.icon}</h2>
+                    <h2 className='text-2xl bg-slate-800 rounded-full p-2'>{budget.icon}</h2>
                     <div>
                         <h2 className='font-bold text-md'>{budget.name}</h2>
                         <h2 className='text-sm text-slate-800'>{budget.totalItems} items</h2>

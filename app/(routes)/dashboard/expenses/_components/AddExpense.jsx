@@ -40,13 +40,14 @@ function AddExpense({budget,refreshData}) {
 
 
   return (
-    <div className='border-2 rounded-lg p-5'>
+    <div className='border-2 rounded-lg p-5 bg-gray-300'>
         
         <h2 className='font-bold text-lg'>Add Expense for {budget.name}</h2>
         
         <div className='pt-4'>
             <h2 className='text-black font-medium text-bold m-2'>Expense</h2>
             <Input
+                className="border-gray-500"
                 placeholder="e.g. Taxi"
                 onChange={(e)=> {
                     setName(e.target.value)
@@ -57,6 +58,7 @@ function AddExpense({budget,refreshData}) {
         <div className='pt-4'>
             <h2 className='text-black font-medium text-bold m-2'>Amount</h2>
             <Input
+                className="border-gray-500"
                 type="number"
                 placeholder="e.g. ₹ 370 /-"
                 onChange={(e)=> {

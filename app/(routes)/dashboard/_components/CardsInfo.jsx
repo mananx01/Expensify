@@ -33,21 +33,21 @@ function CardsInfo({budgetList}) {
         {budgetList.length > 0 ? 
             <div className='mt-7 grid grid-cols-1 md:grid-cols-3 gap-5'>
 
-            <div className='p-5 border rounded-lg flex justify-between items-center gap-2'>
+            <div className='p-5 border-2 border-black rounded-lg flex justify-between items-center gap-2'>
                 <div>
                     <h2 className='text-sm'>Total budgets</h2>
                     <h2 className='font-bold text-2xl'>$ {total_budget}</h2>
                 </div>
                 <PiggyBank className='h-12 w-12 rounded-full text-white bg-blue-700 p-3'/>
             </div>
-            <div className='p-7 border rounded-lg flex justify-between items-center gap-2'>
+            <div className='p-7 border-2 border-black rounded-lg flex justify-between items-center gap-2'>
                 <div>
                     <h2 className='text-sm'>Total Spend</h2>
                     <h2 className='font-bold text-2xl'>$ {total_spend}</h2>
                 </div>
                 <Wallet className='h-12 w-12 rounded-full text-white bg-blue-700 p-3'/>
             </div>
-            <div className='p-7 border rounded-lg flex justify-between items-center gap-2'>
+            <div className='p-7 border-2 border-black rounded-lg flex justify-between items-center gap-2'>
                 <div>
                     <h2 className='text-sm'>Number of budgets</h2>
                     <h2 className='font-bold text-2xl'> {budgetList?.length} </h2>

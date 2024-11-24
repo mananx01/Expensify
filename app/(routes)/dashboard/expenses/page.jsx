@@ -38,7 +38,7 @@ function page() {
 
 
   return (
-    <div className='h-screen p-10 bg-gradient-to-br from-slate-100 to-gray-200'>
+    <div className='min-h-screen p-10 bg-gradient-to-bl from-slate-200 via-slate-500 to-slate-700'>
       <ExpensesListTable expenseList={expenselist} refreshData={() => getAllExpenses()}/>
     </div>
   )

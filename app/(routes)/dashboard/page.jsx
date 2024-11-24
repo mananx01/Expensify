@@ -63,7 +63,7 @@ function Dashboard() {
 
 
   return (
-    <div className='p-10 bg-gradient-to-br from-slate-100 to-gray-200' > 
+    <div className='p-10 bg-slate-100' > 
 
       <h2 className='text-3xl font-bold'>Hi, {user?.fullName} ! </h2>
       <p className='text-gray-600'>Here what happening with your money, Let's manage your expense </p>

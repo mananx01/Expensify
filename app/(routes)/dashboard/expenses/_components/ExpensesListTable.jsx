@@ -78,6 +78,7 @@ function ExpensesListTable({expenseList,refreshData}) {
                         <TableCell>${expenses.amount}</TableCell>
                         <TableCell>{formattedDate}</TableCell>
                         <TableCell><Button 
+                                disabled={expenses.paid}
                                 onClick={() => handlePay(expenses.id, expenses.name,expenses.amount)}
                                 className="w-[100px] bg-green-600"
                             >Pay</Button></TableCell>

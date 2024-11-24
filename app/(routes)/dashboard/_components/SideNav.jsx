@@ -2,9 +2,10 @@
 import React, { useEffect } from 'react'
 import Image from 'next/image'
 import { GroupIcon, LayoutGrid , PiggyBank, ReceiptIndianRupee, ShieldCheck, Wallet } from 'lucide-react'
-import { UserButton, useUser } from '@clerk/nextjs'
+import { SignOutButton, UserButton, useUser } from '@clerk/nextjs'
 import { usePathname } from 'next/navigation'
 import Link from 'next/link';
+import { Button } from '@/components/ui/button'
 
 function SideNav() {
 
@@ -37,13 +38,13 @@ function SideNav() {
             icon: ShieldCheck ,
             path: "/dashboard/upgrade"
         },
-        // {   
-        //     // To be implemented
-        //     id: 5,
-        //     name: "Groups",
-        //     icon: GroupIcon,
-        //     path: "/dashboard/groups"
-        // }
+        {   
+            // To be implemented
+            id: 5,
+            name: "Groups",
+            icon: GroupIcon,
+            path: "/dashboard/groups"
+        }
         ,{
             id: 6,
             name: "Payments",
@@ -60,6 +61,7 @@ function SideNav() {
 
   return (
     <div className='h-screen p-5 border shadow-sm bg-slate-950'>
+
         <div className='flex items-center gap-4'>
             <Image src={'/newlogo.svg'}
                 alt="logo image"
@@ -68,7 +70,8 @@ function SideNav() {
             ></Image>
             <h2 className='text-gray-300 text-2xl'>Expensify</h2>
         </div>
-        
+
+
         <div className='mt-8'>
             {menuItems.map((menu,index) => (    
 
@@ -87,10 +90,14 @@ function SideNav() {
             ))}
 
         </div>
-        <div className='fixed bottom-10 p-5 flex gap-2 items-center'>
+            
+
+        <div className='flex items-center gap-2 fixed bottom-16'>
             <UserButton/>
-            <h2 className='text-white'>{`${user?.fullName}`}</h2>
+            <h2 className='text-gray-200'>{user?.fullName}</h2>
         </div>
+        
+
     </div>
   )
 }

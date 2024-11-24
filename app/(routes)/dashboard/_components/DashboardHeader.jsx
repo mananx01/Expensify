@@ -3,7 +3,7 @@ import React from 'react'
 
 function DashboardHeader() {
   return (
-    <div className='bg-gradient-to-br from-slate-100 to-gray-300 p-5 border-b shadow-sm flex justify-between items-center'>    
+    <div className='bg-gradient-to-bl from-slate-200 via-slate-300 to-slate-300 p-5 border-b shadow-inner flex justify-between items-center'>    
       
       <div className="slide-text-container w-full text-primary font-medium">
         <span className="slide-text">

@@ -88,10 +88,7 @@ function CheckoutPage({expenseID,expenseName, expenseAmount,}) {
     
 
         try {
-
-            // Navigate to the success page
             router.replace(`http://www.localhost:3000/dashboard/payment-success?amount=${expenseAmount}`);
-            
         }
         catch(err){
             console.error("Error updating expense in the database:", err.message);

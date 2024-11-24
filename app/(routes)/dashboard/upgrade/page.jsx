@@ -33,14 +33,14 @@ export default function PlanSelection() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-100 flex flex-col items-center p-6">
+    <div className="min-h-screen bg-gradient-to-tr from-slate-100 via-slate-200 to-slate-500 flex flex-col items-center p-6">
       <h1 className="text-3xl font-bold mb-8">Choose Your Plan</h1>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-6xl">
         {plans.map((plan) => (
           <div
             key={plan.id}
             className={`plan-card bg-white border-2 ${
-              selectedPlan === plan.id ? "border-slate-900 bg-green-100" : "border-transparent"
+              selectedPlan === plan.id ? "border-slate-900 bg-green-200" : "border-transparent"
             } shadow-lg rounded-lg p-6 hover:shadow-xl transition-shadow cursor-pointer`}
             onClick={() => handlePlanSelection(plan.id)}
           >
