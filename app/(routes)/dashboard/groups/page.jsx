@@ -33,6 +33,7 @@ const ExpenseSplitter = () => {
   const [amount, setAmount] = useState("");
   const [members, setMembers] = useState("");
   const [selectedMember, setSelectedMember] = useState(null);
+  const [editedAmount, setEditedAmount] = useState("");
 
   const handleAddExpense = (e) => {
     e.preventDefault();
@@ -51,22 +52,26 @@ const ExpenseSplitter = () => {
     setMembers("");
   };
 
-  const handleUpdateMemberAmount = (expenseId, memberName, newAmount) => {
-    setExpenses((prevExpenses) =>
-      prevExpenses.map((expense) =>
-        expense.id === expenseId
-          ? {
-              ...expense,
-              members: expense.members.map((member) =>
-                member.name === memberName
-                  ? { ...member, amount: parseFloat(newAmount) }
-                  : member
-              ),
-            }
-          : expense
-      )
-    );
-    setSelectedMember(null);
+  const handleUpdateMemberAmount = () => {
+    if (selectedMember && editedAmount !== "") {
+      const { expenseId, member } = selectedMember;
+      setExpenses((prevExpenses) =>
+        prevExpenses.map((expense) =>
+          expense.id === expenseId
+            ? {
+                ...expense,
+                members: expense.members.map((m) =>
+                  m.name === member.name
+                    ? { ...m, amount: parseFloat(editedAmount) }
+                    : m
+                ),
+              }
+            : expense
+        )
+      );
+      setSelectedMember(null);
+      setEditedAmount("");
+    }
   };
 
   return (
@@ -93,9 +98,10 @@ const ExpenseSplitter = () => {
                       <span className="text-blue-600">${member.amount.toFixed(2)}</span>
                     </span>
                     <button
-                      onClick={() =>
-                        setSelectedMember({ expenseId: expense.id, member })
-                      }
+                      onClick={() => {
+                        setSelectedMember({ expenseId: expense.id, member });
+                        setEditedAmount(member.amount.toString());
+                      }}
                       className="text-indigo-500 hover:underline"
                     >
                       Edit
@@ -166,19 +172,19 @@ const ExpenseSplitter = () => {
             </h3>
             <input
               type="number"
-              defaultValue={selectedMember.member.amount}
-              onChange={(e) =>
-                handleUpdateMemberAmount(
-                  selectedMember.expenseId,
-                  selectedMember.member.name,
-                  e.target.value
-                )
-              }
+              value={editedAmount}
+              onChange={(e) => setEditedAmount(e.target.value)}
               className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-400 mb-4"
             />
             <button
+              onClick={handleUpdateMemberAmount}
+              className="w-full py-2 px-4 bg-primary text-white font-semibold rounded-lg hover:bg-blue-700 mb-2"
+            >
+              Save
+            </button>
+            <button
               onClick={() => setSelectedMember(null)}
-              className="w-full py-2 px-4 bg-primary text-white font-semibold rounded-lg hover:bg-blue-700"
+              className="w-full py-2 px-4 bg-gray-300 text-black font-semibold rounded-lg hover:bg-gray-400"
             >
               Close
             </button>

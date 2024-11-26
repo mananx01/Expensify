@@ -66,7 +66,7 @@ function GetTransactions() {
                     <p className="text-xs text-gray-500">{new Date(t.created * 1000).toLocaleString()}</p>
                   </div>
                 </div>
-                <p class="text-sm font-medium text-red-500">- ${t.amount}</p>
+                <p class="text-sm font-medium text-red-500">- ${t.amount/100}</p>
               </div>
 
                 

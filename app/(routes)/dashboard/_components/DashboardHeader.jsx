@@ -7,7 +7,7 @@ function DashboardHeader() {
       
       <div className="slide-text-container w-full text-primary font-medium">
         <span className="slide-text">
-          Simplify your Expenses with Expensify !!
+          Simplify your Expenses with Split Ledger !!
         </span>
       </div>
 
