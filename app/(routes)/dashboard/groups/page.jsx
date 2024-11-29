@@ -1,22 +1,30 @@
 "use client"
 import React, { useState } from "react";
+import { PieChart, Pie, Cell, Tooltip, ResponsiveContainer } from "recharts";
+
 
 const ExpenseSplitter = () => {
   const [expenses, setExpenses] = useState([
     {
       id: 1,
       name: "Dinner",
-      amount: 100,
+      amount: 1200,
       members: [
-        { name: "Manan", amount: 50 },
-        { name: "Yash", amount: 50 },
+        { name: "Manan", amount: 300 },
+        { name: "Yash", amount: 500 },
+        { name: "Ansh", amount: 200 },
+        { name: "Khushi", amount: 200 }
       ],
     },
     {
       id: 2,
       name: "Groceries",
-      amount: 150,
-      members: [{ name: "Ansh", amount: 150 }],
+      amount: 730,
+      members: [
+        { name: "Ansh", amount: 150 },
+        { name: "Rohan", amount: 380},
+        { name: "Sarthak", amount: 200},
+      ],
     },
     {
       id: 3,
@@ -29,11 +37,16 @@ const ExpenseSplitter = () => {
     },
   ]);
 
+  const COLORS = ["#8884d8", "#82ca9d", "#ffc658", "#ff8042", "#8dd1e1"];
+
+
   const [expenseName, setExpenseName] = useState("");
   const [amount, setAmount] = useState("");
   const [members, setMembers] = useState("");
   const [selectedMember, setSelectedMember] = useState(null);
   const [editedAmount, setEditedAmount] = useState("");
+
+  const equalAmount = parseFloat(amount) / (members.split(",").length);
 
   const handleAddExpense = (e) => {
     e.preventDefault();
@@ -43,7 +56,7 @@ const ExpenseSplitter = () => {
       amount: parseFloat(amount),
       members: members.split(",").map((member) => ({
         name: member.trim(),
-        amount: 0,
+        amount: equalAmount,
       })),
     };
     setExpenses([...expenses, newExpense]);
@@ -84,7 +97,7 @@ const ExpenseSplitter = () => {
           {expenses.map((expense) => (
             <div
               key={expense.id}
-              className="mb-4 p-4 bg-white shadow-md rounded-lg border-l-4 border-primary"
+              className="mb-4 p-4 bg-white shadow-md rounded-lg border-l-4 border-primary w-full"
             >
               <h3 className="text-xl font-semibold text-gray-800">
                 {expense.name} -{" "}
@@ -191,6 +204,69 @@ const ExpenseSplitter = () => {
           </div>
         </div>
       )}
+
+          
+    <div className="p-6 flex flex-wrap justify-between gap-6 bg-gray-100 border border-gray-300 rounded-md shadow-lg mt-8">
+      {expenses.map((expense) => (
+        <div
+          key={expense.id}
+          className="w-full lg:w-[48%] p-6 bg-white shadow-md rounded-lg border border-gray-200"
+        >
+          <h4 className="text-xl font-semibold text-gray-800 mb-4">
+            {expense.name} - <span className="text-green-600">Expense Split</span>
+          </h4>
+          <ResponsiveContainer width="100%" height={300}>
+            <PieChart>
+              <Pie
+                data={expense.members}
+                dataKey="amount"
+                nameKey="name"
+                cx="50%"
+                cy="50%"
+                outerRadius={100}
+                innerRadius={60}
+                fill="#82ca9d"
+                label={({ name, percent }) => `${name}: ${(percent * 100).toFixed(1)}%`}
+                labelStyle={{
+                  fontSize: "12px",
+                  fontWeight: "500",
+                  fill: "#555",
+                }}
+              >
+                {expense.members.map((_, index) => (
+                  <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+                ))}
+              </Pie>
+              <Tooltip
+                contentStyle={{
+                  backgroundColor: "rgba(255, 255, 255, 0.9)",
+                  borderRadius: "8px",
+                  border: "1px solid #ccc",
+                  boxShadow: "0px 4px 6px rgba(0, 0, 0, 0.1)",
+                }}
+              />
+            </PieChart>
+          </ResponsiveContainer>
+          <div className="mt-6 grid grid-cols-2 gap-3 text-sm text-gray-700">
+            {expense.members.map((member, index) => (
+              <div
+                key={index}
+                className="flex items-center p-2 border border-gray-200 rounded-lg bg-gray-50"
+              >
+                <div
+                  className="w-4 h-4 rounded-full"
+                  style={{ backgroundColor: COLORS[index % COLORS.length] }}
+                ></div>
+                <span className="ml-2">
+                  {member.name}: <span className="font-semibold">${member.amount.toFixed(2)}</span>
+                </span>
+              </div>
+            ))}
+          </div>
+        </div>
+      ))}
+    </div>
+          
     </div>
   );
 };

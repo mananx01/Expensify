@@ -127,7 +127,7 @@ function ExpensesScreen({params}) {
 
    
     return (
-        <div className='h-screen p-10 bg-gradient-to-tl from-slate-100 to-gray-200 via-slate-400'>
+        <div className='min-h-screen p-10 bg-gradient-to-tl from-slate-100 to-gray-200 via-slate-400'>
             <h2 className="text-3xl font-bold flex justify-between items-center">
 
                 <span className='flex gap-2 items-center'> 

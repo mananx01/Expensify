@@ -7,31 +7,31 @@ const stripe = new Stripe(`${process.env.STRIPE_SECRET_KEY}`)
 
 function GetTransactions() {
 
-    const [transactions, setTransactions] = useState([])
-    const [isSet,setIsset] = useState(false)
+  const [transactions, setTransactions] = useState([])
+  const [isSet,setIsset] = useState(false)
 
-    const {user} = useUser()
+  const {user} = useUser()
 
     useEffect(() => { 
-        const fetchPaymentIntents = async () => {
-            try {
+      const fetchPaymentIntents = async () => {
+          try {
 
-                const response = await fetch('/api/get-payment-intent');
-                if (!response.ok) {
-                    throw new Error(`HTTP error! Status: ${response.status}`);
-                }
-                const data = await response.json();
-                
-                setTransactions(data); 
-                setIsset(true)
-                console.log('Payment Intents:', data); 
+              const response = await fetch('/api/get-payment-intent');
+              if (!response.ok) {
+                  throw new Error(`HTTP error! Status: ${response.status}`);
+              }
+              const data = await response.json();
+              
+              setTransactions(data); 
+              setIsset(true)
+              console.log('Payment Intents:', data); 
 
-            } catch (error) {
-                console.error('Error fetching payment intents:', error.message);
-            }
-        };
+          } catch (error) {
+              console.error('Error fetching payment intents:', error.message);
+          }
+      };
 
-        fetchPaymentIntents()
+      fetchPaymentIntents()
 
     },[])
 
@@ -64,6 +64,9 @@ function GetTransactions() {
                         <p  className="text-sm font-medium text-gray-700">Payment Pending</p>}
                     <p className="text-sm font-medium text-gray-500">Payment id: {t.id}</p>
                     <p className="text-xs text-gray-500">{new Date(t.created * 1000).toLocaleString()}</p>
+                    {/* <p className="text-sm font-medium text-gray-500">
+                      {t.subscription || t.metadata?.subscription_id ? "Type: Subscription Payment" : "Type: One-Time Payment"}
+                    </p> */}
                   </div>
                 </div>
                 <p class="text-sm font-medium text-red-500">- ${t.amount/100}</p>

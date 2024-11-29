@@ -39,7 +39,6 @@ function SideNav() {
             path: "/dashboard/upgrade"
         },
         {   
-            // To be implemented
             id: 5,
             name: "Groups",
             icon: GroupIcon,

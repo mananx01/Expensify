@@ -49,7 +49,7 @@ function ExpensesListTable({expenseList,refreshData}) {
         <h2 className='font-bold text-lg mb-2 mt-8'>Latest Expenses</h2>
 
         <Table className="rounded-lg bg-slate-300">
-            <TableCaption>A list of your recent expenses.</TableCaption>
+            <TableCaption className="text-slate-200">A list of your recent expenses.</TableCaption>
             <TableHeader className="bg-slate-400">
                 <TableRow>
                 <TableHead className="w-[100px] text-black font-bold text-lg">Name</TableHead>
