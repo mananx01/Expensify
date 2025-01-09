@@ -1,6 +1,9 @@
 [build]
-publish = "out" 
-command = "npm run build" 
+  command = "npm run build"
+  publish = "out"
 
-[output]
-base = "/"
+[plugins]
+  [plugins.inputs]
+    token = "nfp_4WCgFU4jf7kJik7Sedm7UJrAwT1WCG1G87be"
+  [[plugins]]
+    package = "@netlify/plugin-nextjs"
