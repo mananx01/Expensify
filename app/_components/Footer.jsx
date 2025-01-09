@@ -8,7 +8,7 @@ function Footer() {
         <div class="mx-auto max-w-5xl px-4 py-16 sm:px-6 lg:px-8">
             <div class="flex justify-center dark:text-teal-300 items-center gap-4">
             <Image src={"/newlogo.svg"} width={40} height={40}></Image>
-            <h2 className='text-teal-600 text-2xl'>Split Ledger</h2>
+            <h2 className='text-teal-600 text-2xl'>Expensify</h2>
             </div>
 
             <p class="mx-auto mt-6 max-w-md text-center leading-relaxed text-gray-500 dark:text-gray-400">

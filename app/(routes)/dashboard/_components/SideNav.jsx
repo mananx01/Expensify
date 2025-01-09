@@ -67,7 +67,7 @@ function SideNav() {
                 width={50}
                 height={30} 
             ></Image>
-            <h2 className='text-gray-300 text-2xl'>Split Ledger</h2>
+            <h2 className='text-gray-300 text-2xl'>Expensify</h2>
         </div>
 
 

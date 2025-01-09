@@ -31,7 +31,7 @@ export default function Page() {
 
 
                     <h2 className="mt-6 text-2xl font-bold text-white sm:text-3xl md:text-4xl">
-                    Welcome to Split Ledger 🦑
+                    Welcome to Expensify 🦑
                     </h2>
 
                     <p className="mt-4 leading-relaxed text-white/90">

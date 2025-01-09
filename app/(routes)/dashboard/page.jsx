@@ -17,48 +17,79 @@ function Dashboard() {
   const [budgetlist,setBudgetList] = useState([])
   const [expenselist,setExpenseList] = useState([])
 
+  const[loading,setLoading] = useState(true);
+  const[error,setError] = useState(null);
 
   useEffect(()=>{
-    user&&getBudgetInfo()
+    if(user) {
+      getBudgetInfo()
+    }
   },[user])
 
   const getBudgetInfo = async ()=>{ 
-    
-    const res = await db.select({
-      ...getTableColumns(budgets),
-      totalSpend: sql`sum(${expenses.amount})`.mapWith(Number),
-      totalItems: sql`count(${expenses.id})`.mapWith(Number),
-    }).from(budgets)
-    .leftJoin(expenses,eq(budgets.id,expenses.budgetId))
-    .where(eq(budgets.createdBy,user?.primaryEmailAddress?.emailAddress))
-    .groupBy(budgets.id) 
-  
 
-    
-    setBudgetList(res)
-    getAllExpenses()  
+    try{
+      setLoading(true);
+      const res = await db.select({
+        ...getTableColumns(budgets),
+        totalSpend: sql`sum(${expenses.amount})`.mapWith(Number),
+        totalItems: sql`count(${expenses.id})`.mapWith(Number),
+      }).from(budgets)
+      .leftJoin(expenses,eq(budgets.id,expenses.budgetId))
+      .where(eq(budgets.createdBy,user?.primaryEmailAddress?.emailAddress))
+      .groupBy(budgets.id) 
+
+      setBudgetList(res)
+      await getAllExpenses()  
+    }
+    catch(err){
+      setError("Failed to load budget Data.");
+      console.error(err);
+    }
+    finally{
+      setLoading(false);
+    }
 
   }
 
   
   const getAllExpenses = async ()=> { 
-
-    const res = await db.select({
-      id: expenses.id,
-      name: expenses.name,
-      amount: expenses.amount,
-      createdAt: expenses.createdAt,
-      paid: expenses.paid
-    }).from(budgets)
-    .rightJoin(expenses, eq(budgets.id, expenses.budgetId))
-    .where(eq(budgets.createdBy, user?.primaryEmailAddress.emailAddress))
-    .orderBy(desc(budgets.id));
-
-    if(res) {
-      setExpenseList(res)
+    try {
+      const res = await db.select({
+        id: expenses.id,
+        name: expenses.name,
+        amount: expenses.amount,
+        createdAt: expenses.createdAt,
+        paid: expenses.paid
+      }).from(budgets)
+      .rightJoin(expenses, eq(budgets.id, expenses.budgetId))
+      .where(eq(budgets.createdBy, user?.primaryEmailAddress.emailAddress))
+      .orderBy(desc(budgets.id));
+  
+      if(res) {
+        setExpenseList(res)
+      }
     }
+    catch(err) {
+      setError("Failed to load expenses data.");
+      console.error(err);
+    }
+   
     // console.log("expenses: ", res);
 
+  }
+
+  if(loading) {
+    return <div className='p-10 bg-slate-100'>Loading...</div>
+  }
+
+  if(error) {
+    return (
+      <div className="p-10 bg-slate-100">
+        <h2 className="text-3xl font-bold text-red-500">Error</h2>
+        <p className="text-gray-600">{error}</p>
+      </div>
+    );
   }
 
 

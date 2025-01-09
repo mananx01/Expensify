@@ -1,11 +1,11 @@
 "use client"
 import { Elements } from '@stripe/react-stripe-js';
 import { loadStripe } from '@stripe/stripe-js';
-import React from 'react'
+import React, { Suspense } from 'react'
 import CheckoutPage from './_components/CheckoutPage';
 import { useUser } from '@clerk/nextjs';
 import PaymentPage from './_components/PaymentPage';
-
+import { useSearchParams } from 'next/navigation';
 
 if(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY === undefined) {
     throw new Error("NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY is not defined");
@@ -13,9 +13,13 @@ if(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY === undefined) {
 
 const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY);
 
-function page({searchParams}) {
+function walletPage({searchParams}) {
 
-    const {expenseID, expenseName, expenseAmount} = searchParams;
+    const Params = useSearchParams();
+    const expenseID = Params.get('expenseID');
+    const expenseName = Params.get('expenseName');
+    const expenseAmount = parseFloat(searchParams.get('expenseAmount')) || 0;
+    // const {expenseID, expenseName, expenseAmount} = searchParams;
     const {user} = useUser()
 
     if(!expenseAmount || !expenseName) {
@@ -63,9 +67,16 @@ function page({searchParams}) {
             </Elements>
             </div>
         </div>
-        </div>
+    </div>
 
   )
 }
 
-export default page
+
+export default function page() {
+    return (
+        <Suspense fallback={<div>Loading payment page...</div>}>
+        <walletPage />
+        </Suspense>
+    );
+}

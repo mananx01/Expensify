@@ -21,7 +21,7 @@ function Header() {
                 width={50}
                 height={30}
             ></Image>
-            <h2 className='font-serif text-teal-400 text-3xl'>Split Ledger</h2>
+            <h2 className='font-serif text-teal-400 text-3xl'>Expensify</h2>
         </div>
        
 
