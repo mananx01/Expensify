@@ -1,5 +1,4 @@
 "use client";
-import { CheckCircle } from "lucide-react";
 import React, { useEffect, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { Howl } from "howler";
@@ -14,8 +13,6 @@ function PaymentSuccessPage() {
   const searchParamsFromUrl = useSearchParams();
 
   const [searchParams, setSearchParams] = useState(null);
-  const [receiptUrl, setReceiptUrl] = useState(null)
-
   const route = useRouter();
 
   const goToDashboard = () => {
@@ -40,53 +37,13 @@ function PaymentSuccessPage() {
       setSearchParams(params);
     }
 
-    console.log('hereeeee');
+    console.log('here');
     console.log(searchParams);
-
-    
-    const fetchReceiptUrl = async () => {
-      try {
-        // Create a server-side API call to retrieve the receipt URL
-        const response = await fetch(`/api/receipt?paymentIntentId=${searchParamsFromUrl?.get("payment_intent")}`);
-        const data = await response.json();
-
-        if (data.receiptUrl) {
-          setReceiptUrl(data.receiptUrl);
-        }
-      } catch (error) {
-        console.error("Error fetching receipt URL:", error);
-      }
-    };
-
-    if (searchParamsFromUrl?.get("payment_intent")) {
-      fetchReceiptUrl();
-    }
-
-
 
   }, [searchParamsFromUrl]);
 
-  if (!searchParams) return <div>Loading...</div>; // Show loading state while waiting for searchParams
-
-
-
-  const ReceiptLink = () => {
-    if (!receiptUrl) return null;
-    
-    return (
-      <div className="mb-4">
-        <a 
-          href={receiptUrl} 
-          target="_blank" 
-          rel="noopener noreferrer"
-          className="text-blue-600 hover:underline"
-        >
-          View Receipt
-        </a>
-      </div>
-    );
-  };
-
+  // Show loading state while waiting for searchParam
+  if (!searchParams) return <div>Loading...</div>; 
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-green-50 via-green-100 to-green-200">
@@ -117,11 +74,6 @@ function PaymentSuccessPage() {
         <div className="bg-green-50 border border-green-100 rounded-lg p-4 mb-6">
           <p className="text-gray-700 font-medium">Transaction ID:</p>
           <p className="text-green-700 font-semibold">#ll{searchParams.payment_intent}</p>
-        </div>
-
-        {/* Print the receipt URL */}
-        <div>
-          <ReceiptLink/>
         </div>
 
         <button

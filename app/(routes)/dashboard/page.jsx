@@ -110,7 +110,7 @@ function Dashboard() {
         <div className='grid gap-3'>
           <h2 className='font-bold text-lg'>Latest Budgets</h2>
           {budgetlist.map((budget,index) => {
-            return <div>
+            return <div key={index}>
               <BudgetItem budget={budget} key={index} />
             </div>
           })}

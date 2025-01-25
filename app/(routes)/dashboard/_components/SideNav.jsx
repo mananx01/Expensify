@@ -74,7 +74,7 @@ function SideNav() {
         <div className='mt-8'>
             {menuItems.map((menu,index) => (    
 
-                <Link href={menu.path}>
+                <Link key={index} href={menu.path}>
 
                     <h2 className={`flex gap-2 items-center mb-2 text-gray-300 font-medium p-3 cursor-pointer rounded-md
                     hover:text-primary hover:bg-blue-300 

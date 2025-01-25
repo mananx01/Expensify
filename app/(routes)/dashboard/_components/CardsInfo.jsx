@@ -59,7 +59,7 @@ function CardsInfo({budgetList}) {
             :
             <div className='mt-7 grid grid-cols-1 md:grid-cols-3 gap-5'>
                 {[1,2,3].map((item,index) => {
-                    return <div className='h-[110px] w-full bg-slate-200 animate-pulse rounded-lg '></div>
+                    return <div key={index} className='h-[110px] w-full bg-slate-200 animate-pulse rounded-lg '></div>
                 })}
             </div> 
         }

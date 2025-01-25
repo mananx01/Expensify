@@ -45,11 +45,11 @@ function BudgetList() {
         <CreateBudget refreshData={()=>{
           getBudgetList()
         }}/>
-        {budgetList.length > 0 ? budgetList.map((budget) => {
-        return <BudgetItem budget={budget}/>
+        {budgetList.length > 0 ? budgetList.map((budget,index) => {
+        return <BudgetItem key={index} budget={budget}/>
       }) : 
         [1,2,3,4].map((items,index) => (
-          <div className='bg-slate-200 rounded-lg w-full h-[140px] animate-pulse shadow-md'></div>
+          <div key={index} className='bg-slate-200 rounded-lg w-full h-[140px] animate-pulse shadow-md'></div>
         ))
 
       }

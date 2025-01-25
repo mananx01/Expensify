@@ -13,12 +13,12 @@ if(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY === undefined) {
 
 const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY);
 
-function walletPage({searchParams}) {
+function Walletpage({searchParams}) {
 
     const Params = useSearchParams();
     const expenseID = Params.get('expenseID');
     const expenseName = Params.get('expenseName');
-    const expenseAmount = parseFloat(searchParams.get('expenseAmount')) || 0;
+    const expenseAmount = parseFloat(Params.get('expenseAmount')) || 0;
     // const {expenseID, expenseName, expenseAmount} = searchParams;
     const {user} = useUser()
 
@@ -76,7 +76,7 @@ function walletPage({searchParams}) {
 export default function page() {
     return (
         <Suspense fallback={<div>Loading payment page...</div>}>
-        <walletPage />
+        <Walletpage />
         </Suspense>
     );
 }

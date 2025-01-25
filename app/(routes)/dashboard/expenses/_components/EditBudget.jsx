@@ -62,9 +62,8 @@ function EditBudget({budgetInfo,refreshData}) {
 
   return (
     <div>
-        
         <Dialog>
-            <DialogTrigger> 
+            <DialogTrigger asChild> 
                <Button> <PenBox/> Edit</Button>
             </DialogTrigger>
             <DialogContent>
@@ -73,8 +72,7 @@ function EditBudget({budgetInfo,refreshData}) {
                 <DialogDescription>
                     
                     <div className='mt-5'>
-                        <Button className='text-lg' variant='outline' 
-                            
+                        <Button className='text-lg' variant='outline'  
                             onClick={()=> {
                                 setOpenEmojiBar(!openEmojiBar)
                             }}
@@ -111,12 +109,7 @@ function EditBudget({budgetInfo,refreshData}) {
                                 }} 
                             />
                         </div> 
-                        
-                        
-
                     </div>
- 
-
                 </DialogDescription>
                 </DialogHeader>
 

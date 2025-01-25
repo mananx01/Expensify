@@ -73,7 +73,7 @@ function ExpensesListTable({expenseList,refreshData}) {
                         minute: "2-digit",
                         hour12: true, 
                     });
-                    return <TableRow>
+                    return <TableRow key={index}>
                         <TableCell className="font-medium">{expenses.name}</TableCell>
                         <TableCell>${expenses.amount}</TableCell>
                         <TableCell>{formattedDate}</TableCell>
