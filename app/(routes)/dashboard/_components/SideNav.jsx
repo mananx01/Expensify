@@ -1,11 +1,12 @@
 "use client"
 import React, { useEffect } from 'react'
 import Image from 'next/image'
-import { GroupIcon, LayoutGrid , PiggyBank, ReceiptIndianRupee, ShieldCheck, Wallet } from 'lucide-react'
+import { GroupIcon, LayoutGrid , PiggyBank, ReceiptIndianRupee, Router, ShieldCheck, Wallet } from 'lucide-react'
 import { SignOutButton, UserButton, useUser } from '@clerk/nextjs'
 import { usePathname } from 'next/navigation'
 import Link from 'next/link';
 import { Button } from '@/components/ui/button'
+import Logo from './Logo'
 
 function SideNav() {
 
@@ -61,15 +62,7 @@ function SideNav() {
   return (
     <div className='h-screen p-5 border shadow-sm bg-slate-950'>
 
-        <div className='flex items-center gap-4'>
-            <Image src={'/newlogo.svg'}
-                alt="logo image"
-                width={50}
-                height={30} 
-            ></Image>
-            <h2 className='text-gray-300 text-2xl'>Expensify</h2>
-        </div>
-
+        <Logo/>
 
         <div className='mt-8'>
             {menuItems.map((menu,index) => (    
