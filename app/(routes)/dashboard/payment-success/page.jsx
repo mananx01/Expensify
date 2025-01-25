@@ -16,7 +16,7 @@ function PaymentSuccessPage() {
   const route = useRouter();
 
   const goToDashboard = () => {
-    route.replace(`http://localhost:3000/dashboard`);
+    route.replace(`http://expensify001.netlify.app/dashboard`);
   };
 
   useEffect(() => {

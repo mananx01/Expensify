@@ -78,7 +78,7 @@ function CheckoutPage({expenseID,expenseName, expenseAmount,}) {
       elements,
       clientSecret,
       confirmParams: {
-        return_url: `http://localhost:3000/dashboard/payment-success?amount=${expenseAmount}`,
+        return_url: `http://expensify001.netlify.app/dashboard/payment-success?amount=${expenseAmount}`,
       }
     })
 
@@ -90,7 +90,7 @@ function CheckoutPage({expenseID,expenseName, expenseAmount,}) {
 
 
     try {
-      router.replace(`http://localhost:3000/dashboard/payment-success?amount=${expenseAmount}`);
+      router.replace(`http://expensify001.netlify.app/dashboard/payment-success?amount=${expenseAmount}`);
     }
     catch(err){
       console.error("Error updating expense in the database:", err.message);
